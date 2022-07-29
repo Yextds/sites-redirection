@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* General Styling */
+.centered-container {
+    @apply mx-auto px-5 md:px-14 max-w-screen-xl;
+}
+
+.section {
+    @apply mt-8 mb-16;
+}
+
+/* Header Styling */
+.topnav #myLinks {
+    display: none;
+  }
+
+/* Product Styling */
+.product-title {
+    @apply font-bold text-gray-800 text-xl sm:text-2xl md:text-4xl;
+}
+
+.product-subtitle {
+    @apply font-bold text-gray-600 text-2xl md:text-3xl;
+}
+
+.product-price {
+    @apply font-bold text-gray-400 text-xl md:text-2xl;
+}
+
+.product-mainCTA {
+    @apply h-12 bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-3xl;
+}
+.product-secondaryCTA {
+    @apply h-12 border-2 border-gray-300 text-black font-bold py-2 px-4 rounded-3xl hover:border-black ;
+}
+
+/* Product Category Styling */
+.product-grid-title {
+    @apply font-bold text-gray-800 text-xl hover:underline;
+}
+
+.product-grid-subtitle {
+    @apply font-bold text-gray-600 text-lg;
+}
+
+.product-grid-price {
+    @apply font-bold text-gray-400;
+}
+
+.product-grid-mainCTA {
+    @apply h-12 bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-3xl;
+}
+.product-grid-secondaryCTA {
+    @apply h-12 border-2 border-gray-200 text-black font-bold py-2 px-4 rounded-3xl hover:border-black ;
+}

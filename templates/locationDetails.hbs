@@ -1,0 +1,74 @@
+---
+{
+    "stream": {
+        "$id": "Locations",
+        "source": "knowledgeGraph",
+        "destination": "pages",
+      "filter": {
+        "entityTypes": [
+          "location"
+        ],
+		"savedFilterIds":[
+			"946153154"
+		]
+      },
+      "fields": [
+        "id",
+        "name",
+        "slug",
+        "address",
+        "mainPhone",
+        "featuredMessage",
+        "emails",
+        "menuUrl",
+        "websiteUrl",
+        "hours",
+        "photoGallery",
+        "c_relatedFAQs.question",
+        "c_relatedFAQs.answer"
+      ],
+      "localization": {
+          "locales": ["en"]
+      }
+    },
+    "urlFormat": "{{slug}}.html"
+}
+---
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{name}}</title>
+        <meta name="description" content="{{featuredMessage}}">
+        {{>head}}
+    </head>
+    <body class="bg-white text-gray-600 font-Poppins leading-normal text-base tracking-normal">
+        {{>navbar}}  
+        <section class="bg-menubg">
+            <div class="flex flex-wrap">                
+                <div class="lg:w-2/4 xl:px-20 xl:py-16 px-10 py-10 w-full">
+                    <h2 class="text-3xl lg:text-4xl md:text-3xl font-semibold text-textwhite mb-6">{{name}}</h2>                    
+                    <h4 class="text-base font-medium text-textwhite mb-2">{{address.line1}},
+                                {{address.city}}, {{address.region}} {{address.postalCode}}, {{address.countryCode}}</h4>
+                    <p class="text-sm font-light text-textwhite leading-7 mb-2"></p>
+                    <p class="text-base font-medium text-textwhite mb-8"><a href="tel:{{mainPhone}}" class="text-primary">{{mainPhone}}</a></p>
+                    {{#if hours}}
+                    <h4 class="text-base font-medium text-textwhite mb-2">Opening hours</h4>
+                    <ul>
+                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Monday:</span>{{#if hours.monday.openIntervals}} {{#each hours.monday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.monday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
+                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Tuesday:</span>{{#if hours.tuesday.openIntervals}}{{#each hours.tuesday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.tuesday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
+                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Wednesday:</span>{{#if hours.wednesday.openIntervals}}{{#each hours.wednesday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.wednesday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
+                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Thursday:</span>{{#if hours.thursday.openIntervals}}{{#each hours.thursday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.thursday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
+                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Friday:</span>{{#if hours.friday.openIntervals}}{{#each hours.friday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.friday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
+                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Saturday:</span>{{#if hours.saturday.openIntervals}}{{#each hours.saturday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.saturday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
+                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Sunday:</span>{{#if hours.sunday.openIntervals}}{{#each hours.sunday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.sunday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
+                    </ul>
+                    {{/if}}
+                </div>
+            </div>
+        </section>        
+        {{>footer}}
+    </body>
+</html>

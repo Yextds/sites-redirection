@@ -13,26 +13,26 @@
 	}
 
 	function fireConversion() {			    
-		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		ytag('conversion', {'cid': '75a21ec8-6e1a-47bf-9794-c7b55c3e41fe'});
 		console.log('fired conversion');
 	}
 	
 	/*
 	function fireCTAbuttons() {
 		window.ytagQ = window.ytagQ || [];    
-		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		ytag('conversion', {'cid': '75a21ec8-6e1a-47bf-9794-c7b55c3e41fe'});
 		console.log('fired CTAbuttons');
 	}
 	
 	function fireContact() {
 		window.ytagQ = window.ytagQ || [];    
-		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		ytag('conversion', {'cid': '75a21ec8-6e1a-47bf-9794-c7b55c3e41fe'});
 		console.log('fired fireContact');
 	}
 	
 	function fireNewsLetter() {
 		window.ytagQ = window.ytagQ || [];    
-		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		ytag('conversion', {'cid': '75a21ec8-6e1a-47bf-9794-c7b55c3e41fe'});
 		console.log('fired NewsLetter');
 	}
 	*/
@@ -40,7 +40,7 @@
 	document.addEventListener("DOMContentLoaded", function () {
 		loadScript("https://assets.sitescdn.net/ytag/ytag.min.js");				
 		{{#if  (compare  __.stream.$id 'Locations') }}
-		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		ytag('conversion', {'cid': '75a21ec8-6e1a-47bf-9794-c7b55c3e41fe'});
 		console.log('View count done');
 		{{/if}}	
 	});

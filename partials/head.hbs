@@ -1,6 +1,10 @@
 <script src="/index.js"></script>
 <script>
-
+	window.ytagQ = window.ytagQ || [];		
+	function ytag() {
+		window.ytagQ.push(arguments); console.log(arguments);
+	}
+	
 	function loadScript(src) {
 		let script = document.createElement("script");
 		script.src = src;
@@ -8,9 +12,7 @@
 		document.body.append(script);
 	}
 
-	function fireConversion() {
-		window.ytagQ = window.ytagQ || [];		
-		function ytag() {window.ytagQ.push(arguments); console.log(arguments);}	    
+	function fireConversion() {			    
 		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
 		console.log('fired conversion');
 	}
@@ -36,8 +38,7 @@
 	*/
 	
 	document.addEventListener("DOMContentLoaded", function () {
-		loadScript("https://assets.sitescdn.net/ytag/ytag.min.js");
-		function ytag() {window.ytagQ.push(arguments); console.log(arguments);}		
+		loadScript("https://assets.sitescdn.net/ytag/ytag.min.js");				
 		{{#if  (compare  __.stream.$id 'Locations') }}
 		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
 		console.log('View count done');

@@ -9,7 +9,8 @@
 	}
 
 	function fireConversion() {
-		window.ytagQ = window.ytagQ || [];    
+		window.ytagQ = window.ytagQ || [];		
+		function ytag() {window.ytagQ.push(arguments); console.log(arguments);}	    
 		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
 		console.log('fired conversion');
 	}
@@ -36,8 +37,7 @@
 	
 	document.addEventListener("DOMContentLoaded", function () {
 		loadScript("https://assets.sitescdn.net/ytag/ytag.min.js");
-		window.ytagQ = window.ytagQ || [];
-		function ytag() {window.ytagQ.push(arguments);}		
+		function ytag() {window.ytagQ.push(arguments); console.log(arguments);}		
 		{{#if  (compare  __.stream.$id 'Locations') }}
 		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
 		console.log('View count done');

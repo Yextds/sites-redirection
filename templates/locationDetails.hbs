@@ -31,7 +31,7 @@
           "locales": ["en"]
       }
     },
-    "urlFormat": "{{slug}}"
+    "urlFormat": "{{slug}}.html"
 }
 ---
 <!DOCTYPE html>
@@ -45,28 +45,57 @@
         {{>head}}
     </head>
     <body class="bg-white text-gray-600 font-Poppins leading-normal text-base tracking-normal">
-        {{>navbar}}  
-        <section class="bg-menubg">
+        <div class="centered-container">
+              {{>navbar}}
+        </div>
+        <div class="centered-container">
             <div class="flex flex-wrap">                
-                <div class="lg:w-2/4 xl:px-20 xl:py-16 px-10 py-10 w-full">
+                <div class="px-10 py-10 w-full">
                     <h2 class="text-3xl lg:text-4xl md:text-3xl font-semibold text-textwhite mb-6">{{name}}</h2>                    
-                    <h4 class="text-base font-medium text-textwhite mb-2">{{address.line1}},
-                                {{address.city}}, {{address.region}} {{address.postalCode}}, {{address.countryCode}}</h4>
-                    <p class="text-sm font-light text-textwhite leading-7 mb-2"></p>
-                    <p class="text-base font-medium text-textwhite mb-8"><a href="tel:{{mainPhone}}" class="text-primary">{{mainPhone}}</a></p>
-                    {{#if hours}}
-                    <h4 class="text-base font-medium text-textwhite mb-2">Opening hours</h4>
-                    <ul>
-                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Monday:</span>{{#if hours.monday.openIntervals}} {{#each hours.monday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.monday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
-                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Tuesday:</span>{{#if hours.tuesday.openIntervals}}{{#each hours.tuesday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.tuesday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
-                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Wednesday:</span>{{#if hours.wednesday.openIntervals}}{{#each hours.wednesday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.wednesday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
-                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Thursday:</span>{{#if hours.thursday.openIntervals}}{{#each hours.thursday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.thursday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
-                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Friday:</span>{{#if hours.friday.openIntervals}}{{#each hours.friday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.friday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
-                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Saturday:</span>{{#if hours.saturday.openIntervals}}{{#each hours.saturday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.saturday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
-                      <li class="text-sm font-light text-textwhite pb-2"><span class="inline-block w-40 font-medium">Sunday:</span>{{#if hours.sunday.openIntervals}}{{#each hours.sunday.openIntervals}} {{start}} - {{end}}</br>{{/each}}{{/if}}{{#if hours.sunday.isClosed}} <span  class="text-primary">Closed</span> {{/if}}</li>
-                    </ul>
-                    {{/if}}
+                    
+
+
+    <div class="grid gap-y-10 md:grid-cols-1 lg:grid-cols-1 lg:col-span-1">
+        <div class='address mt-3'>
+            <h2 class="mb-3">Address</h3>
+            <a id="address" class="hover:underline" href="https://www.google.com/maps/dir/?api=1&destination={{address.line1}} {{address.city}} {{address.region}} {{address.postalCode}}" target="_blank">
+                <div>{{address.line1}}</div>
+                <div>{{address.city}}, {{address.region}} {{address.postalCode}}</div>
+                <div>{{address.countryCode}}</div></a>
+        </div>
+
+        <div class="phone mt-3">
+            <h2 class="mb-3">Contact</h3>
+            <p><a onclick="fireContact()" href="javascript:void(0);"> {{phoneNumber "US" mainPhone "NATIONAL"}}</a></p>
+        </div>
+    </div>
+	<br/><br/><br/>
+    <div class="hours">
+        <h2 class="mb-3">Hours</h3>
+        <div>{{!-- <summary class="hours-list text-base">   --}}
+  {{#with (formatHours hours "Monday" "TimeFormatShort" "DateFormatShort") }}
+      {{#each this.regularHours}}
+      <div class="grid grid-cols-2 lg:grid-cols-5">
+        <div class="lg:col-span-2">
+          <strong>{{this.displayDay}}</strong>
+        </div>
+        <div class="lg:col-span-3">
+          {{#if this.isClosed}}Closed{{/if}}
+          {{#if this.is247}}Open 24/7{{/if}}
+          {{#each this.openIntervals}}
+            {{this.start}}-{{this.end}}
+          {{/each}}
+        </div>
+      </div>
+      {{/each}}
+  {{/with}}
+{{!-- </summary> --}}</div>
+    </div>
+
+<br/><br/><br/>
+					<p class="mt-3" ><a onclick="fireConversion()" href="https://www.google.com/maps/dir/?api=1&destination={{address.line1}} {{address.city}} {{address.region}} {{address.postalCode}}" data-yext-analytics="getdirections" class="direction-url cursor-pointer " >Get Directions</a></p>
                 </div>
+			
             </div>
         </section>        
         {{>footer}}

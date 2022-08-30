@@ -1,3 +1,45 @@
 <script src="/index.js"></script>
+<script>
 
-{{>analytics}}
+	function loadScript(src) {
+		let script = document.createElement("script");
+		script.src = src;
+		script.async = false;
+		document.body.append(script);
+	}
+
+	function fireConversion() {
+		window.ytagQ = window.ytagQ || [];    
+		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		console.log('fired conversion');
+	}
+	
+	function fireCTAbuttons() {
+		window.ytagQ = window.ytagQ || [];    
+		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		console.log('fired CTAbuttons');
+	}
+	
+	function fireContact() {
+		window.ytagQ = window.ytagQ || [];    
+		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		console.log('fired fireContact');
+	}
+	
+	function fireNewsLetter() {
+		window.ytagQ = window.ytagQ || [];    
+		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		console.log('fired NewsLetter');
+	}
+	
+	document.addEventListener("DOMContentLoaded", function () {
+		loadScript("https://assets.sitescdn.net/ytag/ytag.min.js");
+		window.ytagQ = window.ytagQ || [];
+		function ytag() {window.ytagQ.push(arguments);}		
+		{{#if  (compare  __.stream.$id 'Locations') }}
+		ytag('conversion', {'cid': '4785b068-d0df-491b-b4c0-396d0db86ddd'});
+		console.log('View count done');
+		{{/if}}	
+	});
+  
+</script>
